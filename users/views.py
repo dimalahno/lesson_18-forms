@@ -41,7 +41,7 @@ def send_message_view(request):
         if form.is_valid():
             form.save()
             messages.success(request, "Ваше сообщение успешно отправлено!")
-            return redirect("users:send-message")
+            return render(request, "users/send_message.html", {"form": form})
     else:
         form = MessageForm()
 
