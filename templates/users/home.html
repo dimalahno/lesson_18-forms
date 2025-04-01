@@ -6,6 +6,7 @@
   <h2>Добро пожаловать!</h2>
   <p>Зарегистрируйтесь, чтобы получить доступ к сервису.</p>
   <a href="{% url 'users:register' %}">
+    <a href="{% url 'users:login' %}" class="btn btn-primary">Войти</a>
     <button class="btn btn-primary">Зарегистрироваться</button>
   </a>
 {% endblock %}
