@@ -3,11 +3,16 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from .forms import RegistrationForm, LoginForm, MessageForm
 
-
 def home(request):
+    """
+    Домашняя страница
+    """
     return render(request, "users/home.html")
 
 def register(request):
+    """
+    Регистрация пользователя
+    """
     if request.method == "POST":
         form = RegistrationForm(request.POST)
         if form.is_valid():
@@ -21,6 +26,9 @@ def register(request):
     return render(request, "users/register.html", {"form": form})
 
 def login_view(request):
+    """
+    Авторизация пользователя
+    """
     if request.method == "POST":
         form = LoginForm(data=request.POST)
         if form.is_valid():
@@ -36,6 +44,9 @@ def login_view(request):
     return render(request, "users/login.html", {"form": form})
 
 def send_message_view(request):
+    """
+    Отправка сообщений
+    """
     if request.method == "POST":
         form = MessageForm(request.POST)
         if form.is_valid():
