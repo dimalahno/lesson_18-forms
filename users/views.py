@@ -1,7 +1,8 @@
 from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
-from .forms import RegistrationForm, LoginForm
+from .forms import RegistrationForm, LoginForm, MessageForm
+
 
 def home(request):
     return render(request, "users/home.html")
@@ -33,3 +34,15 @@ def login_view(request):
         form = LoginForm()
 
     return render(request, "users/login.html", {"form": form})
+
+def send_message_view(request):
+    if request.method == "POST":
+        form = MessageForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Ваше сообщение успешно отправлено!")
+            return redirect("users:send-message")
+    else:
+        form = MessageForm()
+
+    return render(request, "users/send_message.html", {"form": form})
